@@ -3,124 +3,101 @@
     xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/platform/trunk/src/Core/Framework/App/Manifest/Schema/manifest-1.0.xsd">
     <meta>
         <name>MaatooShopware6Integration</name>
-        <label>maatoo for Shopware 6</label>
+        <label>maatoo</label>
         <label lang="de-DE">maatoo für Shopware 6</label>
-        <description>Data-driven E-Mail Marketing Automation</description>
-        <description lang="de-DE">Data-driven E-Mail Marketing Automation</description>
+        <description>Data-driven Marketing Automation</description>
+        <description lang="de-DE">Data-driven Marketing Automation</description>
         <author>maatoo</author>
         <copyright>maatoo</copyright>
         <version>0.1.1</version>
         <icon>maatoo.png</icon>
         <license>proprietary</license>
     </meta>
+    <setup>
+        <!-- Live secret omitted -->
+        <registrationUrl>http://controlapp_appserver_nginx_1/api/shopware/app-registration</registrationUrl>
+        <secret>testsecret4shopware</secret>
+    </setup>
     <permissions>
-        <read>order</read>
-        <read>order_customer</read>
-        <read>order_line_item</read>
-                <read>order_delivery</read>
-        <read>order_transaction</read>
+        <read>newsletter_recipient</read>
+        <create>newsletter_recipient</create>
+        <update>newsletter_recipient</update>
+        <read>newsletter_recipient_tag</read>
 
         <read>product</read>
         <read>product_category</read>
         <read>product_price</read>
         <read>product_tag</read>
-
-        <read>customer</read>
-        <read>customer_address</read>
-        <read>customer_group</read>
-        <read>customer_tag</read>
-
-        <read>sales_channel</read>
-        <read>sales_channel_domain</read>
-        <read>sales_channel_currency</read>
-        <read>sales_channel_language</read>
-
-        <read>currency</read>
-        <read>locale</read>
-        <read>language</read>
         <read>product_media</read>
-        <read>product_visibility</read>
-        <read>main_category</read>
-        <read>seo_url</read>
-        <read>state_machine</read>
-        <read>state_machine_state</read>
-        <read>newsletter_recipient</read>
+        <read>property_group_option</read>
+        <read>property_group</read>
+        <read>product_manufacturer</read>
+        <read>product_translation</read>
 
-        <read>promotion</read>
-        <read>promotion_sales_channel</read>
-        <read>promotion_discount</read>
-
-        <read>custom_field_set</read>
-        <read>custom_field</read>
+        <read>order</read>
+        <read>order_customer</read>
+        <read>order_line_item</read>
+        <read>order_delivery</read>
+        <read>order_transaction</read>
 
     </permissions>
-    <setup>
-        <!-- Live secret omitted -->
-        <registrationUrl>http://simcen-controlapp.eu.ngrok.io/api/app/register</registrationUrl>
-        <secret>testsecret4shopware</secret>
-    </setup>
-    <webhooks>
-        <!-- order webhooks -->
-        <webhook name="incoming-order" url="http://simcen-controlapp.eu.ngrok.io/api/webhooks/checkout_order_placed" event="checkout.order.placed"/>
-        <!--<webhook name="order-written" url="http://simcen-controlapp.eu.ngrok.io/api/webhooks/checkout_order_written" event="checkout.order.written"/>-->
-
-        <!-- product webhooks -->
-        <webhook name="product-changed" url="http://simcen-controlapp.eu.ngrok.io/api/webhooks/product_written" event="product.written" />
-        <webhook name="product-deleted" url="http://simcen-controlapp.eu.ngrok.io/api/webhooks/product_deleted" event="product.deleted" />
-        <webhook name="product-price-written" url="http://simcen-controlapp.eu.ngrok.io/api/webhooks/product_deleted" event="product_price.written" />
-        <!-- sales_channel webhooks -->
-        <webhook name="sales_channel-deleted" url="http://simcen-controlapp.eu.ngrok.io/api/webhooks/sales_channel_deleted" event="sales_channel.deleted" />
-
-        <!-- newsletter webhooks -->
-        <webhook name="newsletter-confirm" url="http://simcen-controlapp.eu.ngrok.io/api/webhooks/newsletter_confirm" event="newsletter.confirm"/>
-        <!-- Order State Transition Webhooks -->
-        <webhook name="state_enter.order.state.cancelled" url="http://simcen-controlapp.eu.ngrok.io/api/webhooks/state_enter_order_states" event="state_enter.order.state.cancelled"/>
-        <webhook name="state_enter.order.state.completed" url="http://simcen-controlapp.eu.ngrok.io/api/webhooks/state_enter_order_states" event="state_enter.order.state.completed"/>
-        <webhook name="state_enter.order.state.in_progress" url="http://simcen-controlapp.eu.ngrok.io/api/webhooks/state_enter_order_states" event="state_enter.order.state.in_progress"/>
-        <webhook name="state_enter.order.state.open" url="http://simcen-controlapp.eu.ngrok.io/api/webhooks/state_enter_order_states" event="state_enter.order.state.open"/>
-        <webhook name="state_enter.order_delivery.state.cancelled" url="http://simcen-controlapp.eu.ngrok.io/api/webhooks/state_enter_order_states" event="state_enter.order_delivery.state.cancelled"/>
-        <webhook name="state_enter.order_delivery.state.open" url="http://simcen-controlapp.eu.ngrok.io/api/webhooks/state_enter_order_states" event="state_enter.order_delivery.state.open"/>
-        <webhook name="state_enter.order_delivery.state.returned" url="http://simcen-controlapp.eu.ngrok.io/api/webhooks/state_enter_order_states" event="state_enter.order_delivery.state.returned"/>
-        <webhook name="state_enter.order_delivery.state.returned_partially" url="http://simcen-controlapp.eu.ngrok.io/api/webhooks/state_enter_order_states" event="state_enter.order_delivery.state.returned_partially"/>
-        <webhook name="state_enter.order_delivery.state.shipped" url="http://simcen-controlapp.eu.ngrok.io/api/webhooks/state_enter_order_states" event="state_enter.order_delivery.state.shipped"/>
-        <webhook name="state_enter.order_delivery.state.shipped_partially" url="http://simcen-controlapp.eu.ngrok.io/api/webhooks/state_enter_order_states" event="state_enter.order_delivery.state.shipped_partially"/>
-        <webhook name="state_enter.order_transaction.state.authorized" url="http://simcen-controlapp.eu.ngrok.io/api/webhooks/state_enter_order_states" event="state_enter.order_transaction.state.authorized"/>
-        <webhook name="state_enter.order_transaction.state.cancelled" url="http://simcen-controlapp.eu.ngrok.io/api/webhooks/state_enter_order_states" event="state_enter.order_transaction.state.cancelled"/>
-        <webhook name="state_enter.order_transaction.state.chargeback" url="http://simcen-controlapp.eu.ngrok.io/api/webhooks/state_enter_order_states" event="state_enter.order_transaction.state.chargeback"/>
-        <webhook name="state_enter.order_transaction.state.failed" url="http://simcen-controlapp.eu.ngrok.io/api/webhooks/state_enter_order_states" event="state_enter.order_transaction.state.failed"/>
-        <webhook name="state_enter.order_transaction.state.in_progress" url="http://simcen-controlapp.eu.ngrok.io/api/webhooks/state_enter_order_states" event="state_enter.order_transaction.state.in_progress"/>
-        <webhook name="state_enter.order_transaction.state.open" url="http://simcen-controlapp.eu.ngrok.io/api/webhooks/state_enter_order_states" event="state_enter.order_transaction.state.open"/>
-        <webhook name="state_enter.order_transaction.state.paid" url="http://simcen-controlapp.eu.ngrok.io/api/webhooks/state_enter_order_states" event="state_enter.order_transaction.state.paid"/>
-        <webhook name="state_enter.order_transaction.state.paid_partially" url="http://simcen-controlapp.eu.ngrok.io/api/webhooks/state_enter_order_states" event="state_enter.order_transaction.state.paid_partially"/>
-        <webhook name="state_enter.order_transaction.state.refunded" url="http://simcen-controlapp.eu.ngrok.io/api/webhooks/state_enter_order_states" event="state_enter.order_transaction.state.refunded"/>
-        <webhook name="state_enter.order_transaction.state.refunded_partially" url="http://simcen-controlapp.eu.ngrok.io/api/webhooks/state_enter_order_states" event="state_enter.order_transaction.state.refunded_partially"/>
-        <webhook name="state_enter.order_transaction.state.reminded" url="http://simcen-controlapp.eu.ngrok.io/api/webhooks/state_enter_order_states" event="state_enter.order_transaction.state.reminded"/>
-        <!-- Sales Channel webhooks-->
-        <webhook name="sales_channel_domain.written" url="http://simcen-controlapp.eu.ngrok.io/api/webhooks/sales_channel_domain_events" event="sales_channel_domain.written"/>
-        <webhook name="sales_channel_domain.deleted" url="http://simcen-controlapp.eu.ngrok.io/api/webhooks/sales_channel_domain_events" event="sales_channel_domain.deleted"/>
-
-        <!-- customer webhooks -->
-        <webhook name="customer.written" url="http://simcen-controlapp.eu.ngrok.io/api/webhooks/customer_events" event="customer.written"/>
-        <webhook name="customer.deleted" url="http://simcen-controlapp.eu.ngrok.io/api/webhooks/customer_events" event="customer.deleted"/>
-        <webhook name="customer_address.written" url="http://simcen-controlapp.eu.ngrok.io/api/webhooks/customer_address_events" event="customer_address.written"/>
-        <webhook name="customer_address.deleted" url="http://simcen-controlapp.eu.ngrok.io/api/webhooks/customer_address_events" event="customer_address.deleted"/>
-
-        <!-- app related webhooks -->
-        <webhook name="app-installed" url="http://simcen-controlapp.eu.ngrok.io/api/app/installed" event="app.installed" />
-        <webhook name="app-updated" url="http://simcen-controlapp.eu.ngrok.io/api/app/updated" event="app.updated" />
-        <webhook name="app-activated" url="http://simcen-controlapp.eu.ngrok.io/api/app/activated" event="app.activated" />
-        <webhook name="app-deleted" url="http://simcen-controlapp.eu.ngrok.io/api/app/deleted" event="app.deleted" />
-        <webhook name="app-deactivated" url="http://simcen-controlapp.eu.ngrok.io/api/app/deactivated" event="app.deactivated" />
-    </webhooks>
     <admin>
-        <module name="Maatoo-Integration-Settings"
-                source="http://simcen-controlapp.eu.ngrok.io/api/frontend/redirect.html"
+        <!-- Register a custom module that is used as a parent menu entry for other modules -->
+        <module name="MaatooShopware6Integration"
                 parent="sw-marketing"
+                source="http://control-app.lndo.site/shopware/admin"
                 position="50"
         >
-            <label>maatoo for Shopware Settings</label>
-            <label lang="de-DE">maatoo für Shopware Einstellungen</label>
+            <label>Settings</label>
+            <label lang="de-DE">Einstellungen</label>
         </module>
-        <main-module source="http://simcen-controlapp.eu.ngrok.io/api/frontend/redirect.html"/>
+        <!-- Register a module that is opened from the app store and your list of installed apps -->
+        <main-module source="http://control-app.lndo.site/shopware/admin"/>
     </admin>
+    <webhooks>
+        <!-- app lifecycle webhooks -->
+        <webhook name="app-installed" url="http://controlapp_appserver_nginx_1/api/shopware/webhooks/handle" event="app.installed" />
+        <webhook name="app-updated" url="http://controlapp_appserver_nginx_1/api/shopware/webhooks/handle" event="app.updated" />
+        <webhook name="app-activated" url="http://controlapp_appserver_nginx_1/api/shopware/webhooks/handle" event="app.activated" />
+        <webhook name="app-deleted" url="http://controlapp_appserver_nginx_1/api/shopware/webhooks/handle" event="app.deleted" />
+        <webhook name="app-deactivated" url="http://controlapp_appserver_nginx_1/api/shopware/webhooks/handle" event="app.deactivated" />
+
+        <!-- newsletter webhooks -->
+        <webhook name="newsletter-confirm" url="http://controlapp_appserver_nginx_1/api/shopware/webhooks/handle" event="newsletter.confirm"/>
+        <webhook name="newsletter-register" url="http://controlapp_appserver_nginx_1/api/shopware/webhooks/handle" event="newsletter.register"/>
+        <webhook name="newsletter-update" url="http://controlapp_appserver_nginx_1/api/shopware/webhooks/handle" event="newsletter.update"/>
+        <webhook name="newsletter-unsubscribe" url="http://controlapp_appserver_nginx_1/api/shopware/webhooks/handle" event="newsletter.unsubscribe"/>
+        <webhook name="newsletter-written" url="http://controlapp_appserver_nginx_1/api/shopware/webhooks/handle" event="newsletter.written"/>
+        <webhook name="newsletter-delete" url="http://controlapp_appserver_nginx_1/api/shopware/webhooks/handle" event="newsletter.deleted"/>
+
+        <!-- product webhooks -->
+        <webhook name="product-changed" url="http://controlapp_appserver_nginx_1/api/shopware/webhooks/handle" event="product.written" />
+        <webhook name="product-deleted" url="http://controlapp_appserver_nginx_1/api/shopware/webhooks/handle" event="product.deleted" />
+        <webhook name="product-price-written" url="http://controlapp_appserver_nginx_1/api/shopware/webhooks/handle" event="product_price.written" />
+
+        <!-- order webhooks -->
+        <webhook name="incoming-order" url="http://controlapp_appserver_nginx_1/api/shopware/webhooks/handle" event="checkout.order.placed"/>
+        <!-- Order State Transition Webhooks -->
+        <webhook name="state_enter.order.state.cancelled" url="http://controlapp_appserver_nginx_1/api/shopware/webhooks/handle" event="state_enter.order.state.cancelled"/>
+        <webhook name="state_enter.order.state.completed" url="http://controlapp_appserver_nginx_1/api/shopware/webhooks/handle" event="state_enter.order.state.completed"/>
+        <webhook name="state_enter.order.state.in_progress" url="http://controlapp_appserver_nginx_1/api/shopware/webhooks/handle" event="state_enter.order.state.in_progress"/>
+        <webhook name="state_enter.order.state.open" url="http://controlapp_appserver_nginx_1/api/shopware/webhooks/handle" event="state_enter.order.state.open"/>
+        <webhook name="state_enter.order_delivery.state.cancelled" url="http://controlapp_appserver_nginx_1/api/shopware/webhooks/handle" event="state_enter.order_delivery.state.cancelled"/>
+        <webhook name="state_enter.order_delivery.state.open" url="http://controlapp_appserver_nginx_1/api/shopware/webhooks/handle" event="state_enter.order_delivery.state.open"/>
+        <webhook name="state_enter.order_delivery.state.returned" url="http://controlapp_appserver_nginx_1/api/shopware/webhooks/handle" event="state_enter.order_delivery.state.returned"/>
+        <webhook name="state_enter.order_delivery.state.returned_partially" url="http://controlapp_appserver_nginx_1/api/shopware/webhooks/handle" event="state_enter.order_delivery.state.returned_partially"/>
+        <webhook name="state_enter.order_delivery.state.shipped" url="http://controlapp_appserver_nginx_1/api/shopware/webhooks/handle" event="state_enter.order_delivery.state.shipped"/>
+        <webhook name="state_enter.order_delivery.state.shipped_partially" url="http://controlapp_appserver_nginx_1/api/shopware/webhooks/handle" event="state_enter.order_delivery.state.shipped_partially"/>
+        <webhook name="state_enter.order_transaction.state.authorized" url="http://controlapp_appserver_nginx_1/api/shopware/webhooks/handle" event="state_enter.order_transaction.state.authorized"/>
+        <webhook name="state_enter.order_transaction.state.cancelled" url="http://controlapp_appserver_nginx_1/api/shopware/webhooks/handle" event="state_enter.order_transaction.state.cancelled"/>
+        <webhook name="state_enter.order_transaction.state.chargeback" url="http://controlapp_appserver_nginx_1/api/shopware/webhooks/handle" event="state_enter.order_transaction.state.chargeback"/>
+        <webhook name="state_enter.order_transaction.state.failed" url="http://controlapp_appserver_nginx_1/api/shopware/webhooks/handle" event="state_enter.order_transaction.state.failed"/>
+        <webhook name="state_enter.order_transaction.state.in_progress" url="http://controlapp_appserver_nginx_1/api/shopware/webhooks/handle" event="state_enter.order_transaction.state.in_progress"/>
+        <webhook name="state_enter.order_transaction.state.open" url="http://controlapp_appserver_nginx_1/api/shopware/webhooks/handle" event="state_enter.order_transaction.state.open"/>
+        <webhook name="state_enter.order_transaction.state.paid" url="http://controlapp_appserver_nginx_1/api/shopware/webhooks/handle" event="state_enter.order_transaction.state.paid"/>
+        <webhook name="state_enter.order_transaction.state.paid_partially" url="http://controlapp_appserver_nginx_1/api/shopware/webhooks/handle" event="state_enter.order_transaction.state.paid_partially"/>
+        <webhook name="state_enter.order_transaction.state.refunded" url="http://controlapp_appserver_nginx_1/api/shopware/webhooks/handle" event="state_enter.order_transaction.state.refunded"/>
+        <webhook name="state_enter.order_transaction.state.refunded_partially" url="http://controlapp_appserver_nginx_1/api/shopware/webhooks/handle" event="state_enter.order_transaction.state.refunded_partially"/>
+        <webhook name="state_enter.order_transaction.state.reminded" url="http://controlapp_appserver_nginx_1/api/shopware/webhooks/handle" event="state_enter.order_transaction.state.reminded"/>
+    </webhooks>
 </manifest>

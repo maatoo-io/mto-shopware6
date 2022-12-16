@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/platform/master/src/Core/System/SystemConfig/Schema/config.xsd">
+
+    <card>
+        <title>maatoo for Shopware 6</title>
+        <title lang="de-DE">maatoo for Shopware 6</title>
+        <name>maatoo for Shopware 6</name>
+
+        <input-field type="bool">
+            <name>maatooActive</name>
+            <required>true</required>
+            <defaultValue>false</defaultValue>
+            <label>Enable maatoo</label>
+            <label lang="de-DE">maatoo aktivieren</label>
+        </input-field>
+
+        <input-field type="url">
+            <name>baseUrl</name>
+            <required>true</required>
+            <label>URL</label>
+            <label lang="de-DE">maatoo URL</label>
+            <helpText>help me</helpText>
+            <helpText lang="de-DE">hilf mir</helpText>
+        </input-field>
+
+    </card>
+</config>

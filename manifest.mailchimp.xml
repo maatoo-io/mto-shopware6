@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<manifest xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/platform/trunk/src/Core/Framework/App/Manifest/Schema/manifest-1.0.xsd">
+    <meta>
+        <name>MaatooShopware6Integration</name>
+        <label>maatoo for Shopware 6</label>
+        <label lang="de-DE">maatoo für Shopware 6</label>
+        <description>Data-driven E-Mail Marketing Automation</description>
+        <description lang="de-DE">Data-driven E-Mail Marketing Automation</description>
+        <author>maatoo</author>
+        <copyright>maatoo</copyright>
+        <version>0.1.1</version>
+        <icon>maatoo.png</icon>
+        <license>proprietary</license>
+    </meta>
+    <permissions>
+        <read>order</read>
+        <read>order_customer</read>
+        <read>order_line_item</read>
+        <read>order_delivery</read>
+        <read>order_transaction</read>
+
+        <read>product</read>
+        <read>product_category</read>
+        <read>product_price</read>
+        <read>product_tag</read>
+
+        <read>customer</read>
+        <read>customer_address</read>
+        <read>customer_group</read>
+        <read>customer_tag</read>
+
+        <read>sales_channel</read>
+        <read>sales_channel_domain</read>
+        <read>sales_channel_currency</read>
+        <read>sales_channel_language</read>
+
+        <read>currency</read>
+        <read>locale</read>
+        <read>language</read>
+        <read>product_media</read>
+        <read>product_visibility</read>
+        <read>main_category</read>
+        <read>seo_url</read>
+        <read>state_machine</read>
+        <read>state_machine_state</read>
+        <read>newsletter_recipient</read>
+
+        <read>promotion</read>
+        <read>promotion_sales_channel</read>
+        <read>promotion_discount</read>
+
+        <read>custom_field_set</read>
+        <read>custom_field</read>
+
+    </permissions>
+    <setup>
+        <!-- Live secret omitted -->
+        <registrationUrl>http://simcen-controlapp.eu.ngrok.io/api/app/register</registrationUrl>
+        <secret>testsecret4shopware</secret>
+    </setup>
+    <webhooks>
+        <!-- order webhooks -->
+        <webhook name="incoming-order" url="http://simcen-controlapp.eu.ngrok.io/api/webhooks/checkout_order_placed" event="checkout.order.placed"/>
+        <!--<webhook name="order-written" url="http://simcen-controlapp.eu.ngrok.io/api/webhooks/checkout_order_written" event="checkout.order.written"/>-->
+
+        <!-- product webhooks -->
+        <webhook name="product-changed" url="http://simcen-controlapp.eu.ngrok.io/api/webhooks/product_written" event="product.written" />
+        <webhook name="product-deleted" url="http://simcen-controlapp.eu.ngrok.io/api/webhooks/product_deleted" event="product.deleted" />
+        <webhook name="product-price-written" url="http://simcen-controlapp.eu.ngrok.io/api/webhooks/product_deleted" event="product_price.written" />
+        <!-- sales_channel webhooks -->
+        <webhook name="sales_channel-deleted" url="http://simcen-controlapp.eu.ngrok.io/api/webhooks/sales_channel_deleted" event="sales_channel.deleted" />
+
+        <!-- newsletter webhooks -->
+        <webhook name="newsletter-confirm" url="http://simcen-controlapp.eu.ngrok.io/api/webhooks/newsletter_confirm" event="newsletter.confirm"/>
+        <!-- Order State Transition Webhooks -->
+        <webhook name="state_enter.order.state.cancelled" url="http://simcen-controlapp.eu.ngrok.io/api/webhooks/state_enter_order_states" event="state_enter.order.state.cancelled"/>
+        <webhook name="state_enter.order.state.completed" url="http://simcen-controlapp.eu.ngrok.io/api/webhooks/state_enter_order_states" event="state_enter.order.state.completed"/>
+        <webhook name="state_enter.order.state.in_progress" url="http://simcen-controlapp.eu.ngrok.io/api/webhooks/state_enter_order_states" event="state_enter.order.state.in_progress"/>
+        <webhook name="state_enter.order.state.open" url="http://simcen-controlapp.eu.ngrok.io/api/webhooks/state_enter_order_states" event="state_enter.order.state.open"/>
+        <webhook name="state_enter.order_delivery.state.cancelled" url="http://simcen-controlapp.eu.ngrok.io/api/webhooks/state_enter_order_states" event="state_enter.order_delivery.state.cancelled"/>
+        <webhook name="state_enter.order_delivery.state.open" url="http://simcen-controlapp.eu.ngrok.io/api/webhooks/state_enter_order_states" event="state_enter.order_delivery.state.open"/>
+        <webhook name="state_enter.order_delivery.state.returned" url="http://simcen-controlapp.eu.ngrok.io/api/webhooks/state_enter_order_states" event="state_enter.order_delivery.state.returned"/>
+        <webhook name="state_enter.order_delivery.state.returned_partially" url="http://simcen-controlapp.eu.ngrok.io/api/webhooks/state_enter_order_states" event="state_enter.order_delivery.state.returned_partially"/>
+        <webhook name="state_enter.order_delivery.state.shipped" url="http://simcen-controlapp.eu.ngrok.io/api/webhooks/state_enter_order_states" event="state_enter.order_delivery.state.shipped"/>
+        <webhook name="state_enter.order_delivery.state.shipped_partially" url="http://simcen-controlapp.eu.ngrok.io/api/webhooks/state_enter_order_states" event="state_enter.order_delivery.state.shipped_partially"/>
+        <webhook name="state_enter.order_transaction.state.authorized" url="http://simcen-controlapp.eu.ngrok.io/api/webhooks/state_enter_order_states" event="state_enter.order_transaction.state.authorized"/>
+        <webhook name="state_enter.order_transaction.state.cancelled" url="http://simcen-controlapp.eu.ngrok.io/api/webhooks/state_enter_order_states" event="state_enter.order_transaction.state.cancelled"/>
+        <webhook name="state_enter.order_transaction.state.chargeback" url="http://simcen-controlapp.eu.ngrok.io/api/webhooks/state_enter_order_states" event="state_enter.order_transaction.state.chargeback"/>
+        <webhook name="state_enter.order_transaction.state.failed" url="http://simcen-controlapp.eu.ngrok.io/api/webhooks/state_enter_order_states" event="state_enter.order_transaction.state.failed"/>
+        <webhook name="state_enter.order_transaction.state.in_progress" url="http://simcen-controlapp.eu.ngrok.io/api/webhooks/state_enter_order_states" event="state_enter.order_transaction.state.in_progress"/>
+        <webhook name="state_enter.order_transaction.state.open" url="http://simcen-controlapp.eu.ngrok.io/api/webhooks/state_enter_order_states" event="state_enter.order_transaction.state.open"/>
+        <webhook name="state_enter.order_transaction.state.paid" url="http://simcen-controlapp.eu.ngrok.io/api/webhooks/state_enter_order_states" event="state_enter.order_transaction.state.paid"/>
+        <webhook name="state_enter.order_transaction.state.paid_partially" url="http://simcen-controlapp.eu.ngrok.io/api/webhooks/state_enter_order_states" event="state_enter.order_transaction.state.paid_partially"/>
+        <webhook name="state_enter.order_transaction.state.refunded" url="http://simcen-controlapp.eu.ngrok.io/api/webhooks/state_enter_order_states" event="state_enter.order_transaction.state.refunded"/>
+        <webhook name="state_enter.order_transaction.state.refunded_partially" url="http://simcen-controlapp.eu.ngrok.io/api/webhooks/state_enter_order_states" event="state_enter.order_transaction.state.refunded_partially"/>
+        <webhook name="state_enter.order_transaction.state.reminded" url="http://simcen-controlapp.eu.ngrok.io/api/webhooks/state_enter_order_states" event="state_enter.order_transaction.state.reminded"/>
+        <!-- Sales Channel webhooks-->
+        <webhook name="sales_channel_domain.written" url="http://simcen-controlapp.eu.ngrok.io/api/webhooks/sales_channel_domain_events" event="sales_channel_domain.written"/>
+        <webhook name="sales_channel_domain.deleted" url="http://simcen-controlapp.eu.ngrok.io/api/webhooks/sales_channel_domain_events" event="sales_channel_domain.deleted"/>
+
+        <!-- customer webhooks -->
+        <webhook name="customer.written" url="http://simcen-controlapp.eu.ngrok.io/api/webhooks/customer_events" event="customer.written"/>
+        <webhook name="customer.deleted" url="http://simcen-controlapp.eu.ngrok.io/api/webhooks/customer_events" event="customer.deleted"/>
+        <webhook name="customer_address.written" url="http://simcen-controlapp.eu.ngrok.io/api/webhooks/customer_address_events" event="customer_address.written"/>
+        <webhook name="customer_address.deleted" url="http://simcen-controlapp.eu.ngrok.io/api/webhooks/customer_address_events" event="customer_address.deleted"/>
+
+        <!-- app related webhooks -->
+        <webhook name="app-installed" url="http://simcen-controlapp.eu.ngrok.io/api/app/installed" event="app.installed" />
+        <webhook name="app-updated" url="http://simcen-controlapp.eu.ngrok.io/api/app/updated" event="app.updated" />
+        <webhook name="app-activated" url="http://simcen-controlapp.eu.ngrok.io/api/app/activated" event="app.activated" />
+        <webhook name="app-deleted" url="http://simcen-controlapp.eu.ngrok.io/api/app/deleted" event="app.deleted" />
+        <webhook name="app-deactivated" url="http://simcen-controlapp.eu.ngrok.io/api/app/deactivated" event="app.deactivated" />
+    </webhooks>
+    <admin>
+        <module name="Maatoo-Integration-Settings"
+                source="https://simcen-controlapp.eu.ngrok.io/api/app/admin/frontend"
+                parent="sw-marketing"
+                position="50"
+        >
+            <label>Settings</label>
+            <label lang="de-DE">Einstellungen</label>
+        </module>
+        <main-module source="https://simcen-controlapp.eu.ngrok.io/api/app/admin/frontend"/>
+    </admin>
+</manifest>
