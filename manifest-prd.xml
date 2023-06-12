@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<manifest xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/app-system/0.2.0/src/Core/Content/App/Manifest/Schema/manifest-1.0.xsd">
+    <meta>
+        <name>MaatooShopware6Integration</name>
+        <label>maatoo for Shopware 6</label>
+        <label lang="de-DE">maatoo für Shopware 6</label>
+        <description>Smart marketing automation for your Online Shop</description>
+        <description lang="de-DE">Raffinierte Marketing Automation für deinen Online Shop</description>
+        <author>maatoo</author>
+        <copyright>maatoo</copyright>
+        <version>1.0.0</version>
+        <icon>maatoo.png</icon>
+        <license>proprietary</license>
+    </meta>
+    <setup>
+        <!-- Live secret omitted -->
+        <registrationUrl>https://app.maatoo.io/api/shopware/app-registration</registrationUrl>
+    </setup>
+    <permissions>
+        <read>newsletter_recipient</read>
+        <create>newsletter_recipient</create>
+        <update>newsletter_recipient</update>
+        <read>newsletter_recipient_tag</read>
+
+        <read>product</read>
+        <read>product_category</read>
+        <read>product_price</read>
+        <read>product_tag</read>
+        <read>product_media</read>
+        <read>property_group_option</read>
+        <read>property_group</read>
+        <read>product_manufacturer</read>
+        <read>product_translation</read>
+
+        <read>order</read>
+        <read>order_customer</read>
+        <read>order_line_item</read>
+        <read>order_delivery</read>
+        <read>order_transaction</read>
+
+    </permissions>
+    <admin>
+        <!-- Register a custom module that is used as a parent menu entry for other modules -->
+        <module name="MaatooShopware6Integration"
+                parent="sw-marketing"
+                source="https://app.maatoo.io/shopware/admin"
+                position="50"
+        >
+            <label>maatoo</label>
+            <label lang="de-DE">maatoo</label>
+        </module>
+        <!-- Register a module that is opened from the app store and your list of installed apps -->
+        <main-module source="https://app.maatoo.io/shopware/admin"/>
+    </admin>
+    <webhooks>
+        <!-- app lifecycle webhooks -->
+        <webhook name="app-installed" url="https://app.maatoo.io/api/shopware/webhooks/handle" event="app.installed" />
+        <webhook name="app-updated" url="https://app.maatoo.io/api/shopware/webhooks/handle" event="app.updated" />
+        <webhook name="app-activated" url="https://app.maatoo.io/api/shopware/webhooks/handle" event="app.activated" />
+        <webhook name="app-deleted" url="https://app.maatoo.io/api/shopware/webhooks/handle" event="app.deleted" />
+        <webhook name="app-deactivated" url="https://app.maatoo.io/api/shopware/webhooks/handle" event="app.deactivated" />
+
+        <!-- newsletter webhooks -->
+        <webhook name="newsletter-confirm" url="https://app.maatoo.io/api/shopware/webhooks/handle" event="newsletter.confirm"/>
+        <webhook name="newsletter-register" url="https://app.maatoo.io/api/shopware/webhooks/handle" event="newsletter.register"/>
+        <webhook name="newsletter-update" url="https://app.maatoo.io/api/shopware/webhooks/handle" event="newsletter.update"/>
+        <webhook name="newsletter-unsubscribe" url="https://app.maatoo.io/api/shopware/webhooks/handle" event="newsletter.unsubscribe"/>
+        <!--webhook name="newsletter-written" url="https://app.maatoo.io/api/shopware/webhooks/handle" event="newsletter.written"/-->
+        <!--webhook name="newsletter-delete" url="https://app.maatoo.io/api/shopware/webhooks/handle" event="newsletter.deleted"/-->
+
+        <!-- product webhooks -->
+        <webhook name="product-changed" url="https://app.maatoo.io/api/shopware/webhooks/handle" event="product.written" />
+        <webhook name="product-deleted" url="https://app.maatoo.io/api/shopware/webhooks/handle" event="product.deleted" />
+        <webhook name="product-price-written" url="https://app.maatoo.io/api/shopware/webhooks/handle" event="product_price.written" />
+
+        <!-- order webhooks -->
+        <webhook name="incoming-order" url="https://app.maatoo.io/api/shopware/webhooks/handle" event="checkout.order.placed"/>
+        <!-- Order State Transition Webhooks -->
+        <webhook name="state_enter.order.state.cancelled" url="https://app.maatoo.io/api/shopware/webhooks/handle" event="state_enter.order.state.cancelled"/>
+        <webhook name="state_enter.order.state.completed" url="https://app.maatoo.io/api/shopware/webhooks/handle" event="state_enter.order.state.completed"/>
+        <webhook name="state_enter.order.state.in_progress" url="https://app.maatoo.io/api/shopware/webhooks/handle" event="state_enter.order.state.in_progress"/>
+        <webhook name="state_enter.order.state.open" url="https://app.maatoo.io/api/shopware/webhooks/handle" event="state_enter.order.state.open"/>
+        <webhook name="state_enter.order_delivery.state.cancelled" url="https://app.maatoo.io/api/shopware/webhooks/handle" event="state_enter.order_delivery.state.cancelled"/>
+        <webhook name="state_enter.order_delivery.state.open" url="https://app.maatoo.io/api/shopware/webhooks/handle" event="state_enter.order_delivery.state.open"/>
+        <webhook name="state_enter.order_delivery.state.returned" url="https://app.maatoo.io/api/shopware/webhooks/handle" event="state_enter.order_delivery.state.returned"/>
+        <webhook name="state_enter.order_delivery.state.returned_partially" url="https://app.maatoo.io/api/shopware/webhooks/handle" event="state_enter.order_delivery.state.returned_partially"/>
+        <webhook name="state_enter.order_delivery.state.shipped" url="https://app.maatoo.io/api/shopware/webhooks/handle" event="state_enter.order_delivery.state.shipped"/>
+        <webhook name="state_enter.order_delivery.state.shipped_partially" url="https://app.maatoo.io/api/shopware/webhooks/handle" event="state_enter.order_delivery.state.shipped_partially"/>
+        <webhook name="state_enter.order_transaction.state.authorized" url="https://app.maatoo.io/api/shopware/webhooks/handle" event="state_enter.order_transaction.state.authorized"/>
+        <webhook name="state_enter.order_transaction.state.cancelled" url="https://app.maatoo.io/api/shopware/webhooks/handle" event="state_enter.order_transaction.state.cancelled"/>
+        <webhook name="state_enter.order_transaction.state.chargeback" url="https://app.maatoo.io/api/shopware/webhooks/handle" event="state_enter.order_transaction.state.chargeback"/>
+        <webhook name="state_enter.order_transaction.state.failed" url="https://app.maatoo.io/api/shopware/webhooks/handle" event="state_enter.order_transaction.state.failed"/>
+        <webhook name="state_enter.order_transaction.state.in_progress" url="https://app.maatoo.io/api/shopware/webhooks/handle" event="state_enter.order_transaction.state.in_progress"/>
+        <webhook name="state_enter.order_transaction.state.open" url="https://app.maatoo.io/api/shopware/webhooks/handle" event="state_enter.order_transaction.state.open"/>
+        <webhook name="state_enter.order_transaction.state.paid" url="https://app.maatoo.io/api/shopware/webhooks/handle" event="state_enter.order_transaction.state.paid"/>
+        <webhook name="state_enter.order_transaction.state.paid_partially" url="https://app.maatoo.io/api/shopware/webhooks/handle" event="state_enter.order_transaction.state.paid_partially"/>
+        <webhook name="state_enter.order_transaction.state.refunded" url="https://app.maatoo.io/api/shopware/webhooks/handle" event="state_enter.order_transaction.state.refunded"/>
+        <webhook name="state_enter.order_transaction.state.refunded_partially" url="https://app.maatoo.io/api/shopware/webhooks/handle" event="state_enter.order_transaction.state.refunded_partially"/>
+        <webhook name="state_enter.order_transaction.state.reminded" url="https://app.maatoo.io/api/shopware/webhooks/handle" event="state_enter.order_transaction.state.reminded"/>
+    </webhooks>
+</manifest>

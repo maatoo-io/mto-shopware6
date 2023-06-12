@@ -1,15 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<manifest xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/platform/trunk/src/Core/Framework/App/Manifest/Schema/manifest-1.0.xsd">
+<manifest xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/app-system/0.2.0/src/Core/Content/App/Manifest/Schema/manifest-1.0.xsd">
     <meta>
         <name>MaatooShopware6Integration</name>
-        <label>maatoo</label>
+        <label>maatoo for Shopware 6</label>
         <label lang="de-DE">maatoo für Shopware 6</label>
-        <description>Data-driven Marketing Automation</description>
-        <description lang="de-DE">Data-driven Marketing Automation</description>
+        <description>Smart marketing automation for your Online Shop</description>
+        <description lang="de-DE">Raffinierte Marketing Automation für deinen Online Shop</description>
         <author>maatoo</author>
         <copyright>maatoo</copyright>
-        <version>0.1.1</version>
+        <version>1.0.0</version>
         <icon>maatoo.png</icon>
         <license>proprietary</license>
     </meta>
@@ -48,8 +47,8 @@
                 source="http://control-app.lndo.site/shopware/admin"
                 position="50"
         >
-            <label>Settings</label>
-            <label lang="de-DE">Einstellungen</label>
+            <label>maatoo</label>
+            <label lang="de-DE">maatoo</label>
         </module>
         <!-- Register a module that is opened from the app store and your list of installed apps -->
         <main-module source="http://control-app.lndo.site/shopware/admin"/>
@@ -67,8 +66,8 @@
         <webhook name="newsletter-register" url="http://controlapp_appserver_nginx_1/api/shopware/webhooks/handle" event="newsletter.register"/>
         <webhook name="newsletter-update" url="http://controlapp_appserver_nginx_1/api/shopware/webhooks/handle" event="newsletter.update"/>
         <webhook name="newsletter-unsubscribe" url="http://controlapp_appserver_nginx_1/api/shopware/webhooks/handle" event="newsletter.unsubscribe"/>
-        <webhook name="newsletter-written" url="http://controlapp_appserver_nginx_1/api/shopware/webhooks/handle" event="newsletter.written"/>
-        <webhook name="newsletter-delete" url="http://controlapp_appserver_nginx_1/api/shopware/webhooks/handle" event="newsletter.deleted"/>
+        <!--webhook name="newsletter-written" url="http://controlapp_appserver_nginx_1/api/shopware/webhooks/handle" event="newsletter.written"/-->
+        <!--webhook name="newsletter-delete" url="http://controlapp_appserver_nginx_1/api/shopware/webhooks/handle" event="newsletter.deleted"/-->
 
         <!-- product webhooks -->
         <webhook name="product-changed" url="http://controlapp_appserver_nginx_1/api/shopware/webhooks/handle" event="product.written" />

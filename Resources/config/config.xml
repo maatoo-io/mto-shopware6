@@ -3,26 +3,26 @@
         xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/platform/master/src/Core/System/SystemConfig/Schema/config.xsd">
 
     <card>
-        <title>maatoo for Shopware 6</title>
-        <title lang="de-DE">maatoo for Shopware 6</title>
-        <name>maatoo for Shopware 6</name>
+        <title>Tracking</title>
+        <title lang="de-DE">Tracking</title>
 
         <input-field type="bool">
             <name>maatooActive</name>
             <required>true</required>
-            <defaultValue>false</defaultValue>
-            <label>Enable maatoo</label>
-            <label lang="de-DE">maatoo aktivieren</label>
+            <defaultValue>true</defaultValue>
+            <label>Enable maatoo Tracking Script</label>
+            <label lang="de-DE">maatoo Tracking Script aktivieren</label>
+            <helpText>This is required for proper order to contact mapping</helpText>
+            <helpText lang="de-DE">Dies ist für das korrekte Mapping von Bestellungen zu Kontakten erforderlich</helpText>
         </input-field>
 
         <input-field type="url">
             <name>baseUrl</name>
             <required>true</required>
-            <label>URL</label>
-            <label lang="de-DE">maatoo URL</label>
-            <helpText>help me</helpText>
-            <helpText lang="de-DE">hilf mir</helpText>
+            <label>maatoo Base URL</label>
+            <label lang="de-DE">maatoo Base URL</label>
+            <helpText>Add the base URL from Settings -> Tracking from your maatoo account to enable page view tracking</helpText>
+            <helpText lang="de-DE">Fügen Sie die Basis-URL unter Einstellungen -> Tracking von deinem maatoo Account hinzu, um das Tracking von Seitenaufrufen zu aktivieren.</helpText>
         </input-field>
-
     </card>
 </config>
